@@ -1,95 +1,54 @@
 [
     {
-      "name": "Africa",
+      "name": "Texas",
       "show": true,
-      "color": "red",
-      "currentPopulation": 60,
+      "color": "green",
+      "currentPopulation": 25145561,
       "history": [
-        {
-          "year": 1770,
-          "population": 26.4
-        },
-        {
-          "year": 1925,
-          "population": 26.4
-        },
-        {
-          "year": 1950,
-          "population": 35.6
-        },
-        {
-          "year": 1973,
-          "population": 46.9
-        },
-        {
-          "year": 1990,
-          "population": 52.9
-        },
-        {
-          "year": 2000,
-          "population": 50.6
-        },
-        {
-          "year": 2001,
-          "population": 51
-        },
-        {
-          "year": 2002,
-          "population": 51.3
-        },
-        {
-          "year": 2003,
-          "population": 51.7
-        },
-        {
-          "year": 2004,
-          "population": 52.2
-        },
-        {
-          "year": 2005,
-          "population": 53
-        },
-        {
-          "year": 2006,
-          "population": 53.8
-        },
-        {
-          "year": 2007,
-          "population": 54.6
-        },
-        {
-          "year": 2008,
-          "population": 55.5
-        },
-        {
-          "year": 2009,
-          "population": 56.3
-        },
-        {
-          "year": 2010,
-          "population": 57
-        },
-        {
-          "year": 2011,
-          "population": 57.6
-        },        
-        {
-          "year": 2012,
-          "population": 58.2
-        },
-        {
-          "year": 2013,
-          "population": 58.8
-        },
-        {
-          "year": 2014,
-          "population": 59.3
-        },
-        {
-          "year": 2015,
-          "population": 60
-        }
+      {
+        "year": 1910,
+        "population": 3896542
+      },
+      {
+        "year": 1920,
+        "population": 4663228
+      },
+      {
+        "year": 1930,
+        "population": 5824715
+      },
+      {
+        "year": 1940,
+        "population": 6414824
+      },
+      {
+        "year": 1950,
+        "population": 7711194
+      },
+      {
+        "year": 1960,
+        "population": 9579677
+      },
+      {
+        "year": 1970,
+        "population": 11196730
+      },
+      {
+        "year": 1980,
+        "population": 14229191
+      },
+      {
+        "year": 1990,
+        "population": 16986510
+      },
+      {
+        "year": 2000,
+        "population": 20851820
+      },
+      {
+        "year": 2010,
+        "population": 25145561
+      }
       ]
-    
     }
   ]
