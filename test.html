@@ -26,11 +26,11 @@ const xAxis = d3.axisBottom(x).tickFormat(d3.format('.4'));
 const yAxis = d3.axisLeft(y).tickFormat(d3.format('.2s'));
 chart.append('g').call(yAxis); 
 chart.append('g').attr('transform', 'translate(0,' + height + ')').call(xAxis);
-chart.append('text').html('State Population Over Time').attr('x', 200);
+chart.append('text').html('Global Life Expectancy').attr('x', 200);
   
 // Load the data and draw a chart
 let states, tipBox;
-d3.json('test.json', d => {
+d3.json('https://gassan777.github.io/life_expectancy.json', d => {
   states = d;
 
   chart.selectAll()
