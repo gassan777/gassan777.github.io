@@ -351,7 +351,7 @@
       },
       {
         "year": 2012,
-        "population":80.31
+        "population": 80.31
       },
       {
         "year": 2013,
@@ -364,6 +364,98 @@
       {
         "year": 2015,
         "population": 80.67
+      }
+    ]
+  },
+  {
+    "name": "Oceania",
+    "show": true,
+    "color": "black",
+    "currentPopulation": 77.58,
+    "history": [
+      {
+        "year": 1900,
+        "population": 47.6
+      }, 
+      {
+        "year": 1913,
+        "population": 51
+      },
+      {
+        "year": 1950,
+        "population":63.4
+      },
+      {
+        "year": 1973,
+        "population": 68.2
+      },           
+      {
+        "year": 1990,
+        "population": 72.8
+      },
+      {
+        "year": 2000,
+        "population": 74.44
+      },
+      {
+        "year": 2001,
+        "population": 74.78
+      },
+      {
+        "year": 2002,
+        "population": 75.07
+      },
+      {
+        "year": 2003,
+        "population": 75.38
+      },
+      {
+        "year": 2004,
+        "population": 75.67
+      },
+      {
+        "year": 2005,
+        "population": 76.02
+      },
+      {
+        "year": 2006,
+        "population": 76.24
+      },
+      {
+        "year": 2007,
+        "population": 76.48
+      },
+      {
+        "year": 2008,
+        "population": 76.63
+      },
+      {
+        "year": 2009,
+        "population": 76.82
+      },
+      {
+        "year": 2010,
+        "population": 76.96
+      },
+      {
+        "year": 2011,
+        "population": 77.16
+      },
+      {
+        "year": 2012,
+        "population": 77.34
+      },
+      {
+        "year": 2013,
+        "population": 77.47
+      },
+      {
+        "year": 2014,
+        "population": 77.58
+      },
+      {
+        "year": 2015,
+        "population": 77.58
       }
     ]
   }
