@@ -11,8 +11,8 @@ const width = 800 - margin.left - margin.right;
 const height = 400 - margin.top - margin.bottom;
 
 // Define the scales and tell D3 how to draw the line
-const x = d3.scaleLinear().domain([1910, 2010]).range([0, width]);     
-const y = d3.scaleLinear().domain([0, 40000000]).range([height, 0]);
+const x = d3.scaleLinear().domain([1770, 2015]).range([0, width]);     
+const y = d3.scaleLinear().domain([0, 85]).range([height, 0]);
 const line = d3.line().x(d => x(d.year)).y(d => y(d.population));
 
 const chart = d3.select('svg').append('g')
