@@ -186,7 +186,7 @@
   {
     "name": "Asia",
     "show": true,
-    "color": "blue",
+    "color": "red",
     "currentPopulation": 76.9,
     "history": [
       {
