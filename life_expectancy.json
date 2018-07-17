@@ -6,13 +6,21 @@
     "currentPopulation": 60,
     "history": [
       {
-        "year": 1770,
-        "population": 26.4
-      },
-      {
         "year": 1900,
         "population": 26.4
       },
+      {
+        "year": 1913,
+        "population": 26.4
+      },
+      {
+        "year": 1950,
+        "population": 35.6
+      },
+      {
+        "year": 1973,
+        "population": 46.9
+      },         
       {
         "year": 1990,
         "population": 52.9
@@ -90,13 +98,21 @@
     "currentPopulation": 76.9,
     "history": [
       {
-        "year": 1770,
-        "population": 46.4
-      },
-      {
         "year": 1900,
         "population": 41
-      },      
+      },    
+      {
+        "year": 1913,
+        "population": 45.1
+      },
+      {
+        "year": 1950,
+        "population": 58.4
+      },
+      {
+        "year": 1973,
+        "population": 66
+      },         
       {
         "year": 1990,
         "population": 70.8
@@ -164,6 +180,98 @@
       {
         "year": 2015,
         "population": 76.9
+      }
+    ]
+  },
+  {
+    "name": "Asia",
+    "show": true,
+    "color": "blue",
+    "currentPopulation": 76.9,
+    "history": [
+      {
+        "year": 1900,
+        "population": 28
+      }, 
+      {
+        "year": 1913,
+        "population": 28.1
+      },
+      {
+        "year": 1950,
+        "population": 41.6
+      },
+      {
+        "year": 1973,
+        "population": 57.5
+      },           
+      {
+        "year": 1990,
+        "population": 64.5
+      },
+      {
+        "year": 2000,
+        "population": 67.73
+      },
+      {
+        "year": 2001,
+        "population": 68.11
+      },
+      {
+        "year": 2002,
+        "population": 68.48
+      },
+      {
+        "year": 2003,
+        "population": 68.83
+      },
+      {
+        "year": 2004,
+        "population": 69.18
+      },
+      {
+        "year": 2005,
+        "population": 69.5
+      },
+      {
+        "year": 2006,
+        "population": 69.82
+      },
+      {
+        "year": 2007,
+        "population": 70.12
+      },
+      {
+        "year": 2008,
+        "population": 70.41
+      },
+      {
+        "year": 2009,
+        "population": 70.7
+      },
+      {
+        "year": 2010,
+        "population": 70.97
+      },
+      {
+        "year": 2011,
+        "population": 71.23
+      },
+      {
+        "year": 2012,
+        "population": 71.5
+      },
+      {
+        "year": 2013,
+        "population": 71.76
+      },
+      {
+        "year": 2014,
+        "population": 72.02
+      },
+      {
+        "year": 2015,
+        "population": 72.02
       }
     ]
   }
