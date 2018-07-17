@@ -92,18 +92,6 @@
       ]
     },
     {
-      "name": "Americas",
-      "show": true,
-      "color": "blue",
-      "currentPopulation": 34.8,
-      "history": [
-        {
-          "year": 1770,
-          "population": 34.8
-        } 
-      ]
-    },
-    {
       "name": "Asia",
       "show": true,
       "color": "green",
