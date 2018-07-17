@@ -92,106 +92,30 @@
       ]
     },
     {
-      "name": "Michigan",
+      "name": "Americas",
       "show": true,
       "color": "blue",
-      "currentPopulation": 9883640,
+      "currentPopulation": 34.8,
       "history": [
         {
-          "year": 1910,
-          "population": 2810173
+          "year": 1770,
+          "population": 34.8
         },
         {
-          "year": 1920,
-          "population": 3668412
-        },
-        {
-          "year": 1930,
-          "population": 4842325
-        },
-        {
-          "year": 1940,
-          "population": 5256106
-        },
-        {
-          "year": 1950,
-          "population": 6371766
-        },
-        {
-          "year": 1960,
-          "population": 7823194
-        },
-        {
-          "year": 1970,
-          "population": 8875083
-        },
-        {
-          "year": 1980,
-          "population": 9262078
-        },
-        {
-          "year": 1990,
-          "population": 9295297
-        },
-        {
-          "year": 2000,
-          "population": 9938444
-        },
-        {
-          "year": 2010,
-          "population": 9883640
+          "year": 1830,
+          "population": 34.8
         }
       ]
     },
     {
-      "name": "Texas",
+      "name": "Asia",
       "show": true,
       "color": "green",
-      "currentPopulation": 25145561,
+      "currentPopulation": 27.5,
       "history": [
         {
-          "year": 1910,
-          "population": 3896542
-        },
-        {
-          "year": 1920,
-          "population": 4663228
-        },
-        {
-          "year": 1930,
-          "population": 5824715
-        },
-        {
-          "year": 1940,
-          "population": 6414824
-        },
-        {
-          "year": 1950,
-          "population": 7711194
-        },
-        {
-          "year": 1960,
-          "population": 9579677
-        },
-        {
-          "year": 1970,
-          "population": 11196730
-        },
-        {
-          "year": 1980,
-          "population": 14229191
-        },
-        {
-          "year": 1990,
-          "population": 16986510
-        },
-        {
-          "year": 2000,
-          "population": 20851820
-        },
-        {
-          "year": 2010,
-          "population": 25145561
+          "year": 1770,
+          "population": 27.5
         }
       ]
     }
