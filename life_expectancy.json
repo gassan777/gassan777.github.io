@@ -1,9 +1,9 @@
 [
   {
-    "name": "Texas",
+    "name": "Africa",
     "show": true,
     "color": "green",
-    "currentPopulation": 80,
+    "currentPopulation": 60,
     "history": [
       {
         "year": 1770,
@@ -88,6 +88,30 @@
       {
         "year": 2015,
         "population": 60
+      }
+    ]
+  },
+  {
+    "name": "Americas",
+    "show": true,
+    "color": "blue",
+    "currentPopulation": 76.9,
+    "history": [
+      {
+        "year": 1770,
+        "population": 46.4
+      },
+      {
+        "year": 1925,
+        "population": 56.4
+      },
+      {
+        "year": 1950,
+        "population": 65.6
+      },
+      {
+        "year": 1973,
+        "population": 76.9
       }
     ]
   }
