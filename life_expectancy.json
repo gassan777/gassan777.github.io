@@ -1,53 +1,93 @@
 [
     {
-      "name": "California",
+      "name": "Africa",
       "show": true,
       "color": "red",
-      "currentPopulation": 37253956,
+      "currentPopulation": 60,
       "history": [
         {
-          "year": 1910,
-          "population": 2377549
+          "year": 1770,
+          "population": 26.4
         },
         {
-          "year": 1920,
-          "population": 3426861
-        },
-        {
-          "year": 1930,
-          "population": 5677251
-        },
-        {
-          "year": 1940,
-          "population": 6907387
+          "year": 1925,
+          "population": 26.4
         },
         {
           "year": 1950,
-          "population": 10586223
+          "population": 35.6
         },
         {
-          "year": 1960,
-          "population": 15717204
-        },
-        {
-          "year": 1970,
-          "population": 19953134
-        },
-        {
-          "year": 1980,
-          "population": 23667902
+          "year": 1973,
+          "population": 46.9
         },
         {
           "year": 1990,
-          "population": 29760021
+          "population": 52.9
         },
         {
           "year": 2000,
-          "population": 33871648
+          "population": 50.6
+        },
+        {
+          "year": 2001,
+          "population": 51
+        },
+        {
+          "year": 2002,
+          "population": 51.3
+        },
+        {
+          "year": 2003,
+          "population": 51.7
+        },
+        {
+          "year": 2004,
+          "population": 52.2
+        },
+        {
+          "year": 2005,
+          "population": 53
+        },
+        {
+          "year": 2006,
+          "population": 53.8
+        },
+        {
+          "year": 2007,
+          "population": 54.6
+        },
+        {
+          "year": 2008,
+          "population": 55.5
+        },
+        {
+          "year": 2009,
+          "population": 56.3
         },
         {
           "year": 2010,
-          "population": 37253956
+          "population": 57
+        },
+        {
+          "year": 2011,
+          "population": 57.6
+        },        
+        {
+          "year": 2012,
+          "population": 58.2
+        },
+        {
+          "year": 2013,
+          "population": 58.8
+        },
+        {
+          "year": 2014,
+          "population": 59.3
+        },
+        {
+          "year": 2015,
+          "population": 60
         }
       ]
     },
