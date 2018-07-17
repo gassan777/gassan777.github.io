@@ -278,7 +278,7 @@
   {
     "name": "Europe",
     "show": true,
-    "color": "maroon",
+    "color": "teal",
     "currentPopulation": 80.67,
     "history": [
       {
