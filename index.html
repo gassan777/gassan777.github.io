@@ -8,10 +8,9 @@
 	<meta name="description" content="fullPage full-screen navigation and sections control menu." />
 	<meta name="keywords"  content="fullpage,jquery,demo,screen,fullscreen,navigation,control arrows, dots" />
 	<meta name="Resource-type" content="Document" />
-
+	<script src="https://d3js.org/d3.v4.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="fullpage/fullpage.css" />
-	<link rel="stylesheet" type="text/css" href="fullpage/examples.css" />
 	<style>
 
 	/* Style for our header texts
@@ -23,7 +22,7 @@
 		margin:0;
 	}
 	.intro p{
-		color: #fff;
+		color: #ffffff;
 	}
 
 	/* Centered texts in each section
@@ -47,6 +46,47 @@
 	#infoMenu li a {
 		color: #fff;
 	}
+
+	.left-center {
+    position: absolute;
+    top: 30%;
+    left: 16px;
+    color: white;
+	text-align: left;
+	}
+
+	.about-this {
+    position: absolute;
+    bottom: 10%;
+    left: 16px;
+	text-align: left;
+	font: bold 14px Arial;
+  	text-decoration: none;
+ 	background-color: #EEEEEE;
+ 	color: #333333;
+ 	padding: 6px 6px 6px 6px;
+	}
+	
+	.left-side {
+		float: left;
+		width: 35%;
+		overflow: hidden;
+		color: black;
+		text-align: left;
+		margin-left: 20px;
+		vertical-align: middle;
+		margin-top: 50px;
+  	}
+  
+	.right-side {
+		overflow: hidden;
+		color: black;
+  	}
+
+	.smaller-font {
+    font-size: 50%;
+	}
+
 	</style>
 
 	<!--[if IE]>
@@ -58,44 +98,128 @@
 <body>
 
 <div id="fullpage">
-	<div class="section " id="section0">
+
+	<div class="section" id="section0">
+		<div>
+			<img src="oldman.png" alt="Picture of an old man">
+			<p class="left-center">
+				<font size="6">Global Life Expectancy</font><br>
+				<font size="4">
+					Human life expectancy has been steadily increasing over the past several decades.<br><br><br>
+					<font size="5">This interactive slideshow will help you with the following:</font><br>
+					- Explore global trends in life expectancy<br>
+					- Look at trends for individual countries<br>
+					- Explore healthy life expectancy worldwide<br>
+					- Review median age by country on a map
+				</font><br><br>
+				<font size="4">Use your mouse to scroll down the pages or use page links on the right side</font>
+			</p>
+			<a class="about-this" href="#about">About this visualization</a>
+		</div>
+			
+	</div>
+
+	<div class="section" id="section1">
+			<div id="wrapper">
+					<div class="left-side">
+						<p><font size="6">Global Life Expectancy</font></p>
+						<font size="4">First, let's explore global trends in life expectancy<br>
+						As you can see life expectancy throughout the world has been stable (and rather low) since 1770 but experienced a dramatic increase since about 1900<br>
+						Although wealthy countries lead the way in life expectancy Africa has also experienced a radical improvement</font>
+					</div>    
+					<div class="right-side">
+							<svg width="700" height="350" style="border: 1px solid black;"></svg>
+							<script>
+							var svg = d3.select("svg"),
+								margin = {top: 20, right: 20, bottom: 30, left: 50},
+								width = +svg.attr("width") - margin.left - margin.right,
+								height = +svg.attr("height") - margin.top - margin.bottom,
+								g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+							var parseTime = d3.timeParse("%d-%b-%y");
+
+							var x = d3.scaleTime()
+								.rangeRound([0, width]);
+
+							var y = d3.scaleLinear()
+								.rangeRound([height, 0]);
+
+							var line = d3.line()
+								.x(function(d) { return x(d.date); })
+								.y(function(d) { return y(d.close); });
+
+							d3.tsv("/data/data.tsv", function(d) {
+							d.date = parseTime(d.date);
+							d.close = +d.close;
+							return d;
+							}, function(error, data) {
+							if (error) throw error;
+
+							x.domain(d3.extent(data, function(d) { return d.date; }));
+							y.domain(d3.extent(data, function(d) { return d.close; }));
+
+							g.append("g")
+								.attr("transform", "translate(0," + height + ")")
+								.call(d3.axisBottom(x))
+								.select(".domain")
+								.remove();
+
+							g.append("g")
+								.call(d3.axisLeft(y))
+								.append("text")
+								.attr("fill", "#000")
+								.attr("transform", "rotate(-90)")
+								.attr("y", 6)
+								.attr("dy", "0.71em")
+								.attr("text-anchor", "end")
+								.text("Price ($)");
+
+							g.append("path")
+								.datum(data)
+								.attr("fill", "none")
+								.attr("stroke", "steelblue")
+								.attr("stroke-linejoin", "round")
+								.attr("stroke-linecap", "round")
+								.attr("stroke-width", 1.5)
+								.attr("d", line);
+							});
+							</script>
+					</div>
+			</div>
+	</div>
+
+	<div class="section" id="section2">
 		<div class="intro">
-			<h1>Navigation dots</h1>
-			<p>An easy and beautiful way to navigate throw the sections</p>
+			<h1>Page 3 Title</h1>
+			<p>Page 3 Description</p>
 		</div>
 	</div>
-	<div class="section" id="section1">
-	    <div class="slide" id="slide1">
+
+	<div class="section" id="section3">
+		<div class="intro">
+			<h1>Page 4 Title</h1>
+			<p>Page 4 Description</p>
+		</div>
+	</div>
+
+	<div class="section" id="section4">
 			<div class="intro">
-				<h1>Clickable</h1>
-				<p>
-					You can even click on the navigation and jump directly to another section.
-				</p>
+				<h1>About this visualization</h1>
+				<p>Page 5 Description</p>
 			</div>
 		</div>
 
-	    <div class="slide" id="slide2">
-			<h1>Slide 2</h1>
-		</div>
-
-	</div>
-	<div class="section" id="section2">
-		<div class="intro">
-			<h1>Enjoy it</h1>
-		</div>
-	</div>
 </div>
 
 <script type="text/javascript" src="fullpage/fullpage.js"></script>
-<script type="text/javascript" src="fullpage/examples.js"></script>
 
 <script type="text/javascript">
     var myFullpage = new fullpage('#fullpage', {
-        anchors: ['firstPage', 'secondPage', '3rdPage'],
-        sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
+        anchors: ['intro', 'page2', 'page3', 'page4', 'about'],
+        sectionsColor: ['black', '#9EAF9C', '#7E8F7C', '#9EAF9C', '#7E8F7C'],
         navigation: true,
         navigationPosition: 'right',
-        navigationTooltips: ['First page', 'Second page', 'Third and last page']
+        navigationTooltips: ['', '', '', '', '']
     });
 </script>
 
