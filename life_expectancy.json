@@ -10,6 +10,10 @@
         "population": 26.4
       },
       {
+        "year": 1910,
+        "population": 26.4
+      },      
+      {
         "year": 1913,
         "population": 26.4
       },
@@ -105,6 +109,10 @@
         "year": 1900,
         "population": 41
       },    
+      {
+        "year": 1910,
+        "population": 45.1
+      },      
       {
         "year": 1913,
         "population": 45.1
@@ -202,6 +210,10 @@
         "population": 28
       }, 
       {
+        "year": 1910,
+        "population": 28.1
+      },      
+      {
         "year": 1913,
         "population": 28.1
       },
@@ -298,6 +310,10 @@
         "population": 42.7
       }, 
       {
+        "year": 1910,
+        "population": 46.8
+      },      
+      {
         "year": 1913,
         "population": 46.8
       },
@@ -393,6 +409,10 @@
         "year": 1900,
         "population": 47.6
       }, 
+      {
+        "year": 1910,
+        "population": 51
+      },      
       {
         "year": 1913,
         "population": 51
