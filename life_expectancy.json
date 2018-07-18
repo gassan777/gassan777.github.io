@@ -18,6 +18,10 @@
         "population": 35.6
       },
       {
+        "year": 1970,
+        "population": 46.9
+      },        
+      {
         "year": 1973,
         "population": 46.9
       },         
@@ -109,6 +113,10 @@
         "year": 1950,
         "population": 58.4
       },
+      {
+        "year": 1970,
+        "population": 66
+      },       
       {
         "year": 1973,
         "population": 66
@@ -202,6 +210,10 @@
         "population": 41.6
       },
       {
+        "year": 1970,
+        "population": 57.5
+      },        
+      {
         "year": 1973,
         "population": 57.5
       },           
@@ -294,6 +306,10 @@
         "population": 64.7
       },
       {
+        "year": 1970,
+        "population": 70.9
+      },         
+      {
         "year": 1973,
         "population": 70.9
       },           
@@ -385,6 +401,10 @@
         "year": 1950,
         "population":63.4
       },
+      {
+        "year": 1970,
+        "population": 68.2
+      },       
       {
         "year": 1973,
         "population": 68.2
