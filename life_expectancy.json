@@ -4,23 +4,7 @@
     "show": true,
     "color": "green",
     "currentPopulation": 60,
-    "history": [
-      {
-        "year": 1900,
-        "population": 26.4
-      },
-      {
-        "year": 1913,
-        "population": 26.4
-      },
-      {
-        "year": 1950,
-        "population": 35.6
-      },
-      {
-        "year": 1973,
-        "population": 46.9
-      },         
+    "history": [         
       {
         "year": 1990,
         "population": 52.9
@@ -96,23 +80,7 @@
     "show": true,
     "color": "blue",
     "currentPopulation": 76.9,
-    "history": [
-      {
-        "year": 1900,
-        "population": 41
-      },    
-      {
-        "year": 1913,
-        "population": 45.1
-      },
-      {
-        "year": 1950,
-        "population": 58.4
-      },
-      {
-        "year": 1973,
-        "population": 66
-      },         
+    "history": [       
       {
         "year": 1990,
         "population": 70.8
@@ -190,26 +158,6 @@
     "currentPopulation": 72.02,
     "history": [
       {
-        "year": 1900,
-        "population": 28
-      }, 
-      {
-        "year": 1913,
-        "population": 28.1
-      },
-      {
-        "year": 1950,
-        "population": 41.6
-      },
-      {
-        "year": 1973,
-        "population": 57.5
-      },           
-      {
-        "year": 1990,
-        "population": 64.5
-      },
-      {
         "year": 2000,
         "population": 67.73
       },
@@ -281,22 +229,6 @@
     "color": "darkorange",
     "currentPopulation": 80.67,
     "history": [
-      {
-        "year": 1900,
-        "population": 42.7
-      }, 
-      {
-        "year": 1913,
-        "population": 46.8
-      },
-      {
-        "year": 1950,
-        "population": 64.7
-      },
-      {
-        "year": 1973,
-        "population": 70.9
-      },           
       {
         "year": 1990,
         "population": 74.2
