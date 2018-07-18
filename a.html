@@ -28,7 +28,7 @@ chart.append('text').html('State Population Over Time').attr('x', 200);
 
 // Load the data and draw a chart
 let states, tipBox;
-d3.json('state-populations.json', d => {
+d3.json('https://gassan777.github.io/state-populations.json', d => {
   states = d;
 
   chart.selectAll()
