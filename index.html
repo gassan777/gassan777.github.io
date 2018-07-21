@@ -9,6 +9,7 @@
 	<meta name="keywords"  content="fullpage,jquery,demo,screen,fullscreen,navigation,control arrows, dots" />
 	<meta name="Resource-type" content="Document" />
 	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="fullpage/fullpage.css" />
 	<style>
@@ -87,6 +88,19 @@
     font-size: 50%;
 	}
 
+    .annotation path.connector-arrow, 
+    .annotation path.connector-dot, 
+    .title text, .annotation text {
+      fill: var(--accent-color);
+    }
+
+    .annotation-note-bg {
+      fill: rgba(0, 0, 0, 0);
+    }
+
+    .annotation-note-title {
+      font-weight: bold;
+    }
 	</style>
 
 	<!--[if IE]>
@@ -126,8 +140,8 @@
 						<p><font size="6">Global Life Expectancy</font></p>
 						<font size="4">First, let's explore global trends in life expectancy<br><br>
 						As you can see life expectancy throughout the world has been stable (and rather low) since 1770 but experienced a dramatic increase since about 1900<br><br>
-						Although wealthy countries lead the way in life expectancy Africa has also experienced a radical improvement</font><br><br>
-						Move mouse across the plots to see individual regional life expectancy values
+						Although wealthy countries lead the way in life expectancy Africa has also experienced a radical improvement<br><br>
+						Move mouse across the plots to see individual regional life expectancy values</font>
 					</div>    
 					<div class="right-side">
 						<svg width='1000' height='600'></svg>
@@ -218,15 +232,48 @@
 							.style('color', d => d.color)
 							.html(d => d.name + ': ' + d.history.find(h => h.year == year).population);
 						}
+
+						const annotations = [
+						{
+							type: d3.annotationCalloutCircle,
+							note: {
+								label: "The only region that had a few 'bumps' on the road to higher life expectancy",
+								title: "Africa",
+								wrap: 190
+							},
+							subject: {
+								radius: 50
+							},
+							x: 770,
+							y: 340,
+							dy: 80,
+							dx: 50
+						}]
+						
+						const makeAnnotations = d3.annotation()
+						.type(d3.annotationLabel)
+						.annotations(annotations)
+
+						d3.select("svg")
+						.append("g")
+						.attr("class", "annotation-group")
+						.call(makeAnnotations)
 						</script>
 					</div>
 			</div>
 	</div>
 
 	<div class="section" id="section2">
-		<div class="intro">
-			<h1>Page 3 Title</h1>
-			<p>Page 3 Description</p>
+		<div id="wrapper">
+			<div class="left-side">
+				<br><br><br><br><br><br>
+				<p><font size="6">Title here</font></p>
+				<font size="4">Description here</font>
+			</div>    
+			<div class="right-side">
+				hi
+			</div>
+			
 		</div>
 	</div>
 
