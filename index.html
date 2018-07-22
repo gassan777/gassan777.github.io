@@ -78,7 +78,17 @@
 		vertical-align: middle;
 		margin-top: 50px;
   	}
-  
+
+ 	.left-side {
+		float: left;
+		width: 35%;
+		overflow: hidden;
+		color: black;
+		text-align: left;
+		margin-left: 20px;
+		vertical-align: middle;
+		margin-top: 50px;
+  	} 
 	.right-side {
 		overflow: hidden;
 		color: black;
@@ -101,6 +111,47 @@
     .annotation-note-title {
       font-weight: bold;
     }
+
+/* --- Global --- */
+
+select {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 3px;
+  text-decoration: none;
+  font-size: 11px;
+  cursor: pointer;
+}
+select:focus {
+  outline:0;
+}
+b {
+  font-size:11px;
+}
+.sortCheck {
+  float:right;
+  margin-top:-35px;
+  margin-right:290px;
+}
+#myCheckbox {
+  position:relative;
+  top:3px;
+}
+/* --- Chart --- */
+.grid--y path,
+.grid--y text {
+  display: none;
+}
+.grid--y line {
+  opacity:.15;
+}
+g.layer {
+  opacity:.9;
+}
+g.layer:hover {
+  opacity:1;
+}
+	
 	</style>
 
 	<!--[if IE]>
@@ -122,8 +173,7 @@
 					Human life expectancy has been steadily increasing over the past several decades.<br><br><br>
 					<font size="5">This interactive slideshow will help you with the following:</font><br>
 					- Explore global trends in life expectancy<br>
-					- Look at trends for individual countries<br>
-					- Explore healthy life expectancy worldwide<br>
+					- Look at global trends in healthy life expectancy and life expectancy that includes disability<br>
 					- Review median age by country on a map
 				</font><br><br>
 				<font size="4">Use your mouse to scroll down the pages or use page links on the right side</font>
@@ -144,9 +194,8 @@
 						Move mouse across the plots to see individual regional life expectancy values</font>
 					</div>    
 					<div class="right-side">
-						<svg width='1000' height='600'></svg>
+						<svg width='1000' height='600' id = 'svg1'></svg>
 						<div id='tooltip' style='position:absolute;background-color:lightgray;padding:5px'></div>
-						<script src="http://d3js.org/d3.v4.min.js"></script>
 						<script>
 						  
 						// Define margins, dimensions, and some line colors
@@ -159,17 +208,17 @@
 						const y = d3.scaleLinear().domain([25, 85]).range([height, 0]);
 						const line = d3.line().x(d => x(d.year)).y(d => y(d.population));
 						
-						const chart = d3.select('svg').append('g')
+						const chart = d3.select('#svg1').append('g')
 						  .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 						  
 						const tooltip = d3.select('#tooltip');
 						const tooltipLine = chart.append('line');
 						  
 						// Add the axes and a title
-						const xAxis = d3.axisBottom(x).tickFormat(d3.format('.4'));
-						const yAxis = d3.axisLeft(y).tickFormat(d3.format('.2s'));
-						chart.append('g').call(yAxis); 
-						chart.append('g').attr('transform', 'translate(0,' + height + ')').call(xAxis);
+						const xAxis2 = d3.axisBottom(x).tickFormat(d3.format('.4'));
+						const yAxis2 = d3.axisLeft(y).tickFormat(d3.format('.2s'));
+						chart.append('g').call(yAxis2); 
+						chart.append('g').attr('transform', 'translate(0,' + height + ')').call(xAxis2);
 						chart.append('text').html('Global Life Expectancy').attr('x', 200);
 						  
 						// Load the data and draw a chart
@@ -254,7 +303,7 @@
 						.type(d3.annotationLabel)
 						.annotations(annotations)
 
-						d3.select("svg")
+						d3.select("#svg1")
 						.append("g")
 						.attr("class", "annotation-group")
 						.call(makeAnnotations)
@@ -267,11 +316,245 @@
 		<div id="wrapper">
 			<div class="left-side">
 				<br><br><br><br><br><br>
-				<p><font size="6">Title here</font></p>
-				<font size="4">Description here</font>
+				<p><font size="6">Healthy life expectancy versus total life</font></p>
+				<font size="4">Now let's explore healthy life expectancy vs total life expectancy (including life with disability)<br><br>
+				Select the year in the drop down menu to view the data for that particular year<br><br>
+				Interesting observations:<br>
+				 - Even though the global life expectancy is rising the period of life with disability seems to hold the same (proportionally)<br>
+				 - Central and South Africa barely increased life expectancy from 1990 to 2000. In fact life expectancy in South Africa decreased during that time<br>
+				 - Life expectancy in Eastern Europe also decreased in that period<br>
+				 - The overall world trend is ever increasing life expectancy
+			</font>
 			</div>    
 			<div class="right-side">
-				hi
+					<!-- Selection Category -->
+
+<select id="category" style="display: none">
+  <option value="CC">Category 1</option>
+  <option value="DD">Category 2</option>
+</select> 
+
+<!-- Selection New dataset -->
+<span style="margin-left:30px;">
+<b>Choose Year</b>
+  
+<select id="year" onchange="toggle();">
+  <option value="data1990">1990</option>
+  <option value="data2000">2000</option>  
+  <option value="data2016">2016</option>
+</select>
+</span>
+
+<!-- Chart -->
+<div id="chart"></div>
+
+<!-- Sort dimension -->
+<span class="sortCheck">
+<input type="checkbox" id="myCheckbox" style="display: none">
+</span>
+
+<script>
+
+let Globalvar = {}; // Global access variables
+
+Globalvar.csvShift = "data.csv"; // CSV init
+
+let formatValue = d3.format(".2s");
+
+
+let g = d3.select("#chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+let x0 = d3.scaleBand().rangeRound([0, width]).paddingInner(0.1),
+    x1 = d3.scaleBand(),
+    y2 = d3.scaleLinear().rangeRound([height, 0]);
+
+let xAxis = d3.axisBottom(x0),
+    yAxis = d3.axisLeft(y2).ticks(null, "s");
+    yGrid = d3.axisLeft(y2).tickSize(-width);
+
+g.append("g")
+    .attr("class","axis axis--x")
+    .attr("transform", "translate(0," + height + ")");
+
+g.append("g")
+    .attr("class", "axis axis--y");
+
+g.append("g")
+    .attr("class", "axis grid--y");
+
+Globalvar.durations = 0;
+  
+let afterLoad = () => Globalvar.durations = 750;
+
+let z = d3.scaleOrdinal()
+    .range(["steelblue", "lightblue"]);
+
+d3.select("#category").on('change', update); // Change category
+d3.select("#myCheckbox").on('change', update); // Sort checkbox
+
+update();
+
+var file, catInt;
+
+let legend = g.append("g")
+    .attr("text-anchor", "end")
+  .selectAll("g")
+    .data([["Healthy Life"],["Total Life"]])
+  .enter().append("g")
+    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+legend.append("rect")
+    .attr("x", width - 45 )
+    .attr("width", 12)
+    .attr("height", 15)
+    .attr("fill", z);
+
+legend.append("text")
+    .attr("x", width + 60)
+    .attr("y", 7.5)
+    .attr("dy", "0.32em")
+    .text(function(d) { return d; });
+
+function update() {
+  
+	file = Globalvar.csvShift
+
+  // Event handlers
+  catInt = d3.select('#category').property('value');
+
+	d3.csv(file, type, function(error, data) {
+		if (error) throw error;
+	
+		let keys = data.columns.slice(1, 4); // Modify accordingly
+
+    let sortIndex = data.map(function(d){ return d.State});
+
+    let copy = [];
+
+    keys.forEach(function(t) {
+      t = t.slice(0, -2) // Slice last two letters
+      copy.push(t) // Push sliced strings into copy array
+    })
+	
+		// yDomain and yAxis/yGrid
+		y2.domain([0, d3.max(data, function(d) {
+			return d3.max(keys, function(key) {
+				return d[key];
+				}); 
+			})
+		]).nice();
+
+    g.selectAll(".axis.axis--y").transition()
+      .duration(Globalvar.durations)
+      .call(yAxis);
+    g.selectAll(".axis.grid--y").transition()
+      .duration(Globalvar.durations)
+      .call(yGrid);
+
+// bars
+let barGroups = g.selectAll("g.layer").data(data);
+barGroups.enter().append("g")
+  .classed('layer', true);
+
+barGroups.exit().remove();
+
+    // Sort data
+    data.sort(d3.select("#myCheckbox").property("checked")
+      ? function(a, b) { return b.total - a.total; }
+      : function(a, b) { return sortIndex.indexOf(a.State) - sortIndex.indexOf(b.State);})
+
+    // xDomains
+    x0.domain(data.map(function(d) { return d.State; }));
+    x1.domain(keys).rangeRound([0, x0.bandwidth()]);
+	
+		// Update axis
+		g.selectAll(".axis.axis--x").transition()
+			.duration(Globalvar.durations)
+			.call(xAxis);
+
+g.selectAll("g.layer").transition().duration(Globalvar.durations)
+  .attr("transform", function(d, i) {
+    return "translate(" + x0(d.State) + ",0)";
+  });
+    
+    let bars = g.selectAll("g.layer").selectAll("rect")
+        .data(function(d) { 
+            return copy.map(function(key) { // Return copy 
+                return {key: key+catInt, value: d[key+catInt]}; // Add catInt
+            }); 
+        });
+    bars.enter().append("rect")
+        .attr("fill", function(d) { return z(d.key); })
+        .attr("width", x1.bandwidth())
+
+      .transition().duration(Globalvar.durations)
+        .attr("x", function(d) { return x1(d.key); })
+        .attr("y", function(d) { return y2(d["value"]); })
+        .attr("height", function(d) { return height - y2(d["value"]); });
+    
+    bars
+      .transition().duration(Globalvar.durations)
+        .attr("y", function(d) { return y2(d["value"]); })
+        .attr("height", function(d) { return height - y2(d["value"]); });
+
+    bars.exit().remove();
+
+    // Text on bars
+    let textOnBar = g.selectAll("g.layer").selectAll("text")
+      .data(function(d) { 
+            return copy.map(function(key) { // Return copy 
+                return {key: key+catInt, value: d[key+catInt]}; // Add catInt
+            }); 
+        })
+    textOnBar.enter().append("text")
+      .attr("fill","#fff")
+      .attr("font-size",11)
+      .transition().duration(Globalvar.durations)
+      .attr("transform", function(d, i) {
+        let x0 = x1.bandwidth() * i + 7,
+            y0 = y2(d.value) + 8;
+        return "translate(" + x0 + "," + y0 + ") rotate(90)";
+      })
+      .text(function(d) {return formatValue(d.value)})
+
+    textOnBar
+      .transition().duration(Globalvar.durations)
+      .attr("transform", function(d, i) {
+        let x0 = x1.bandwidth() * i + 7,
+            y0 = y2(d.value) + 8;
+        return "translate(" + x0 + "," + y0 + ") rotate(90)";
+      })
+      .text(function(d) {return formatValue(d.value)})
+
+    afterLoad(); // Change transition duration
+
+	}); 
+}
+
+// Read data
+function type(d, i, columns) {
+  for (var i = 1, ttl = 0, n = columns.length; i < n; ++i) ttl += d[columns[i]] = +d[columns[i]];
+    d.total = ttl;
+    return d;
+}
+
+// Toggle csv data
+function toggle() {
+    if (document.getElementById('year').value == 'data1990') {
+         Globalvar.csvShift = "data.csv" ;
+		} else if 
+       (document.getElementById('year').value == 'data2000') {
+         Globalvar.csvShift = "data1.csv";
+		} else if 
+       (document.getElementById('year').value == 'data2016') {
+         Globalvar.csvShift = "data2.csv";
+    } update();
+}
+</script>
 			</div>
 			
 		</div>
@@ -286,8 +569,13 @@
 
 	<div class="section" id="section4">
 			<div class="intro">
-				<h1>About this visualization</h1>
-				<p>Page 5 Description</p>
+				<p><font size = "8">About this visualization</font></p>
+				<p align="left" style="margin-left: 20px;"><font size="5">Narrative visualization approach</font><br>
+				<font size="4" color="black">
+					This project follows an interactive slideshow structure. We walk viewer through a slideshow and in each slide there is an opportunity for viewer to explore details or skip to the next slide if they so desire.
+				</font>
+				</p>
+				
 			</div>
 		</div>
 
