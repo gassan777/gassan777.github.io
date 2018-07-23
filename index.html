@@ -67,7 +67,17 @@
  	color: #333333;
  	padding: 6px 6px 6px 6px;
 	}
-	
+
+	.go-home {
+    bottom: 10%;
+    left: 16px;
+	font: bold 14px Arial;
+  	text-decoration: none;
+ 	background-color: #5c5c5c;
+ 	color: white;
+ 	padding: 6px 6px 6px 6px;
+	}
+
 	.left-side {
 		float: left;
 		width: 35%;
@@ -171,10 +181,10 @@ g.layer:hover {
 				<font size="6">Global Life Expectancy</font><br>
 				<font size="4">
 					Human life expectancy has been steadily increasing over the past several decades.<br><br><br>
-					<font size="5">This interactive slideshow will help you with the following:</font><br>
+					<font size="5">This interactive slideshow will help you:</font><br>
 					- Explore global trends in life expectancy<br>
 					- Look at global trends in healthy life expectancy and life expectancy that includes disability<br>
-					- Review median age by country on a map
+					- Review life expectancy data for different years
 				</font><br><br>
 				<font size="4">Use your mouse to scroll down the pages or use page links on the right side</font>
 			</p>
@@ -220,7 +230,22 @@ g.layer:hover {
 						chart.append('g').call(yAxis2); 
 						chart.append('g').attr('transform', 'translate(0,' + height + ')').call(xAxis2);
 						chart.append('text').html('Global Life Expectancy').attr('x', 200);
-						  
+						 
+						chart.append("text")
+    					.attr("class", "x label")
+						.attr("text-anchor", "end")
+						.attr("x", width/2)
+						.attr("y", height + 30)
+						.text("Year");
+
+						chart.append("text")
+							.attr("class", "y label")
+							.attr("text-anchor", "end")
+							.attr("y", 6)
+							.attr("dy", ".75em")
+							.attr("transform", "rotate(-90)")
+							.text("Life Expectancy");
+	
 						// Load the data and draw a chart
 						let states, tipBox;
 						d3.json('https://gassan777.github.io/life_expectancy.json', d => {
@@ -243,6 +268,7 @@ g.layer:hover {
 							.attr('alignment-baseline', 'middle')
 							.attr('x', width)
 							.attr('dx', '.5em')
+							.attr('font-size', '11')
 							.attr('y', d => y(d.currentPopulation)); 
 						  
 						  tipBox = chart.append('rect')
@@ -336,9 +362,9 @@ g.layer:hover {
 
 <!-- Selection New dataset -->
 <span style="margin-left:30px;">
-<b>Choose Year</b>
-  
-<select id="year" onchange="toggle();">
+<b><font size=4>Choose Year</font></b>
+
+<select id="year" onchange="toggle();" style="font-size:15px;">
   <option value="data1990">1990</option>
   <option value="data2000">2000</option>  
   <option value="data2016">2016</option>
@@ -367,7 +393,7 @@ let g = d3.select("#chart").append("svg")
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform","translate(" + margin.left + "," + margin.top + ")");
-
+	
 let x0 = d3.scaleBand().rangeRound([0, width]).paddingInner(0.1),
     x1 = d3.scaleBand(),
     y2 = d3.scaleLinear().rangeRound([height, 0]);
@@ -419,6 +445,19 @@ legend.append("text")
     .attr("dy", "0.32em")
     .text(function(d) { return d; });
 
+var axisLabelX = 150;
+var axisLabelY = chart / 2;
+
+let bleh = g.append('g')
+    .attr('transform', 'translate(' + axisLabelX + ', ' + axisLabelY + ')')
+    .append('text')
+    .attr('text-anchor', 'middle')
+    .attr('transform', 'rotate(-90)')
+	.text('Age')
+	.attr("x", -30)
+	.attr("y", 15)	
+    ;
+	
 function update() {
   
 	file = Globalvar.csvShift
@@ -560,22 +599,54 @@ function toggle() {
 		</div>
 	</div>
 
-	<div class="section" id="section3">
-		<div class="intro">
-			<h1>Page 4 Title</h1>
-			<p>Page 4 Description</p>
-		</div>
-	</div>
-
-	<div class="section" id="section4">
-			<div class="intro">
-				<p><font size = "8">About this visualization</font></p>
-				<p align="left" style="margin-left: 20px;"><font size="5">Narrative visualization approach</font><br>
+	<div class="section" id="section4" >
+			<div class="intro" style="margin-left: 450px; margin-right: 450px;">
+				<p><font size = "8" color="black">About this visualization</font></p>
+				
+				<p align="left"><font size="5" color="black"><strong>Narrative visualization approach</strong></font><br>
 				<font size="4" color="black">
-					This project follows an interactive slideshow structure. We walk viewer through a slideshow and in each slide there is an opportunity for viewer to explore details or skip to the next slide if they so desire.
+					This project follows an interactive slideshow structure. We walk viewer through a slideshow and in each slide there is an opportunity for viewer to explore details or skip to the next slide if they so desire.<br>
+					This narrative walks viewer through global trends in life expectancy.
 				</font>
 				</p>
 				
+				<p align="left"><font size="5" color="black"><strong>Scenes</strong></font><br>
+					<font size="4" color="black">
+						I have used <a href="https://alvarotrigo.com/fullPage/">fullPage.js library</a> for slide show effect. This library help me built a coherent narrative that can be easily tracked. Webpages are easily navigated either with a mouse scrolling or by clicking on specific page on the page navigation on the right.
+					</font>
+				</p>	
+				
+				<p align="left"><font size="5" color="black"><strong>Annotations</strong></font><br>
+					<font size="4" color="black">
+						Various annotations are used in the pages:<br>
+						The first page includes the overview and the key points of the narrative<br>
+						In the following pages you can see annotations describing axes and titles<br>
+						You can also see dynamic tooltips on the global life expectancy chart that provide additional information<br>
+						A certain portion of the chart is also highlighted to draw viewer's attention to certain data point<br>
+						Legend has also been provided on the charts
+					</font>
+				</p>	
+
+				<p align="left"><font size="5" color="black"><strong>Triggers</strong></font><br>
+					<font size="4" color="black">
+						You can hover your mouse over the global life expectancy chart for a tooltip to appear showing you the values for all the areas for that specific data point
+					</font>
+				</p>		
+				
+				<p align="left"><font size="5" color="black"><strong>Parameters</strong></font><br>
+					<font size="4" color="black">
+						On the page showing healthy life expectancy vs total life expectancy a dropdown menu is a parameter that is used to filter the data based on the year.<br>
+					</font>
+				</p>					
+
+				<p align="left"><font size="5" color="black"><strong>Data</strong></font><br>
+					<font size="4" color="black">
+						All data used in this project is available at the following websites:<br>
+						<a href="https://ourworldindata.org/life-expectancy#life-expectancy-and-healthy-life-expectancy">https://ourworldindata.org/life-expectancy#life-expectancy-and-healthy-life-expectancy<a><br>
+						<a href = "https://esa.un.org/unpd/wpp/Download/Standard/Population/">https://esa.un.org/unpd/wpp/Download/Standard/Population/</a>
+					</font>
+				</p><br>	
+				<a class="go-home" href="#intro">Go to the home page</a>
 			</div>
 		</div>
 
@@ -585,11 +656,11 @@ function toggle() {
 
 <script type="text/javascript">
     var myFullpage = new fullpage('#fullpage', {
-        anchors: ['intro', 'page2', 'page3', 'page4', 'about'],
-        sectionsColor: ['black', '#9EAF9C', '#7E8F7C', '#9EAF9C', '#7E8F7C'],
+        anchors: ['intro', 'page2', 'page3', 'about'],
+        sectionsColor: ['black', '#EEEEEE', 'white', '#EEEEEE'],
         navigation: true,
         navigationPosition: 'right',
-        navigationTooltips: ['', '', '', '', '']
+        navigationTooltips: ['', '', '', '']
     });
 </script>
 
